@@ -1,0 +1,10 @@
+{
+  "AppSettings": {
+    "SiteTitle": "AppHarborAspNet5Test"
+  },
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=aspnet5-GruntTest2-acef331b-cdf5-46ec-b4a6-c21e7c5b13d9;Trusted_Connection=True;MultipleActiveResultSets=true"
+    }
+  }
+}
