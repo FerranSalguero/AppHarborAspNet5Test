@@ -1,4 +1,4 @@
-/// <binding AfterBuild='sass, coffee' Clean='clean' />
+/// <binding AfterBuild='sass, coffee, autoprefixer' Clean='clean' />
 var gulp = require("gulp"),
     rimraf = require("rimraf"),
     concat = require("gulp-concat"),
@@ -7,6 +7,7 @@ var gulp = require("gulp"),
     sass = require("gulp-sass"),
     coffee = require('gulp-coffee'),
     gutil = require('gulp-util'),
+    autoprefixer = require('gulp-autoprefixer'),
     project = require("./project.json");
 
 var paths = {
@@ -40,6 +41,15 @@ gulp.task('coffee', function () {
     gulp.src(paths.webroot + 'coffeescript/**/*.coffee')
       .pipe(coffee({ bare: true }).on('error', gutil.log))
       .pipe(gulp.dest(paths.webroot + 'js/'))
+});
+
+gulp.task('autoprefixer', function () {
+    return gulp.src(paths.webroot + 'css/**/*.css', { base: '.' })
+        .pipe(autoprefixer({
+            browsers: ['> 0%'],
+            cascade: false
+        }))
+        .pipe(gulp.dest('.'));
 });
 
 gulp.task("min:js", function () {
