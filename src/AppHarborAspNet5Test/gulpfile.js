@@ -6,7 +6,7 @@ var gulp = require("gulp"),
     uglify = require("gulp-uglify"),
     sass = require("gulp-sass"),
     coffee = require('gulp-coffee'),
-    gutil = require('gulp-util');
+    gutil = require('gulp-util'),
     project = require("./project.json");
 
 var paths = {
