@@ -1,10 +1,12 @@
-/// <binding AfterBuild='sass' Clean='clean' />
+/// <binding AfterBuild='sass, coffee' Clean='clean' />
 var gulp = require("gulp"),
     rimraf = require("rimraf"),
     concat = require("gulp-concat"),
     cssmin = require("gulp-cssmin"),
     uglify = require("gulp-uglify"),
     sass = require("gulp-sass"),
+    coffee = require('gulp-coffee'),
+    gutil = require('gulp-util');
     project = require("./project.json");
 
 var paths = {
@@ -32,6 +34,12 @@ gulp.task('sass', function () {
     gulp.src(paths.webroot + 'sass/**/*.scss')
       .pipe(sass.sync().on('error', sass.logError))
       .pipe(gulp.dest(paths.webroot + 'css/'));
+});
+
+gulp.task('coffee', function () {
+    gulp.src(paths.webroot + 'coffeescript/**/*.coffee')
+      .pipe(coffee({ bare: true }).on('error', gutil.log))
+      .pipe(gulp.dest(paths.webroot + 'js/'))
 });
 
 gulp.task("min:js", function () {
